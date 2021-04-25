@@ -19,20 +19,26 @@ export const checkinChild = async (
   accessToken,
   pickup,
   isCheckedIn,
-  setCheckedIn
+  setCheckedIn,
+  setMessage,
+  setPickup
 ) => {
   const data = {
     accessToken,
     pickupTime: pickup,
   };
   try {
-    const response = await axios.post(
-      `https://tryfamly.co/api/v2/children/${childId}/checkins`,
-      data
-    );
-    console.log(response);
-    if (response.status === 200) setCheckedIn(!isCheckedIn);
-    return response.data;
+    if (pickup) {
+      const response = await axios.post(
+        `https://tryfamly.co/api/v2/children/${childId}/checkins`,
+        data
+      );
+      if (response.status === 200) {
+        setCheckedIn(!isCheckedIn);
+        setPickup(response.data.pickupTime.slice(11, 16));
+        return response.data;
+      }
+    } else setMessage("No pickup time provided");
   } catch (error) {
     console.log(error);
   }
@@ -52,9 +58,10 @@ export const checkoutChild = async (
       `https://tryfamly.co/api/v2/children/${childId}/checkout`,
       data
     );
-    console.log(response);
-    if (response.status === 200) setCheckedIn(!isCheckedIn);
-    return response.data;
+    if (response.status === 200) {
+      setCheckedIn(!isCheckedIn);
+      return response.data;
+    }
   } catch (error) {
     console.log(error);
   }

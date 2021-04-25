@@ -3,13 +3,18 @@ import { getAllChildren } from "../../helpers/utils";
 import { credentials } from "../../config";
 import ChildrenList from "../../components/ChildrenList";
 
-const Children = ({ api }) => {
+const Children = () => {
   const [childrenData, setChildrenData] = useState([]);
 
   useEffect(() => {
     getAllChildren(credentials, setChildrenData);
   }, []);
 
-  return <ChildrenList children={childrenData} />;
+  return (
+    <>
+      <h3>Check in /Check out Your Child</h3>{" "}
+      <ChildrenList children={childrenData} />
+    </>
+  );
 };
 export default Children;

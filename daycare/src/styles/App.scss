@@ -5,6 +5,7 @@
 
   img {
     border-radius: 50%;
+    width: 70px;
   }
 
   tr {
@@ -12,17 +13,34 @@
     background-color: #e0e0e0;
     box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
     display: grid;
-    grid-template-columns: 4% 24% 24% 20% 28%;
+    grid-template-columns: 4% 20% 24% 24% 28%;
     align-items: center;
-    input {
-      width: 130px;
-      height: 38px;
-      border: none;
-      border-radius: 0.25rem;
+    td {
+      font-size: 20px;
+    }
+    .form-group {
+      margin-bottom: 0;
+      input {
+        width: 100%;
+        height: 38px;
+        border: none;
+        border-radius: 0.25rem;
+        padding: 5px;
+        text-align: center;
+      }
+      label {
+        font-size: 0.8rem;
+        margin: 0;
+      }
+      h6 {
+        color: red;
+      }
     }
   }
   button {
     width: 120px;
+    border-radius: 30px;
+    padding: 10px 12px;
   }
 }
 

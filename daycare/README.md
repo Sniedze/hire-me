@@ -1,70 +1,75 @@
-# Getting Started with Create React App
+# Daycare tablet interface for Checkin in/out children
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+solution in the browser:
 
-## Available Scripts
+```
+ http://soperfect.dk/daycare/
+```
 
-In the project directory, you can run:
+This webhook server allows clients to register urls they want to receive webhooks to, trigger webhooks which proceeds with server sending post request to all client`s registred urls.
 
-### `yarn start`
+## Technologies
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+    ### React Framework
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+    ### Axios for data fetching
 
-### `yarn test`
+    ### reactstrap Bootstrap UI for styled components
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+    ### Sass for styling
 
-### `yarn build`
+        because styling was not the focus in this project, all scss code was written in App.scss file. Normally, pages would have separate styling files.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Structure
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The code structure is made scalable.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+        ### components
 
-### `yarn eject`
+        This folder would normally keep reusable components.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+        ### helpers
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+        thsi folder holds all the functions, methods.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+        ### pages
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+        pages folder is further divided into separate folders for each page.
 
-## Learn More
+        ### styles
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+        Styles folder contains all folders realted to styling.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+        ### config.js
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+        Normally this file would be ignored and not pushed to git repo.
 
-### Analyzing the Bundle Size
+## Design
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Due to the scope of this assignement solution targets tablet size users. Button and input sizes are created accordingly.
 
-### Making a Progressive Web App
+The Interface is user friendly in terms of interaction steps needed to checkin or checkout children. Users are not directed to another page.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Button colors help to indicated if the child is checked in or checked out.
 
-### Advanced Configuration
+## How to Install and Run
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### Installation
 
-### Deployment
+To install dependencies run:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+```
+  $ npm install
+  or
+  yarn install
 
-### `yarn build` fails to minify
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Run Server
+
+```
+ $ yarn start
+ or
+ $ npm start
+```

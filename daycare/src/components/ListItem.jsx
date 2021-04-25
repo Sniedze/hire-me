@@ -1,19 +1,31 @@
 import React, { useState } from "react";
-import { Button } from "reactstrap";
+import { Button, FormGroup, Label, Input } from "reactstrap";
 import { credentials } from "../config";
 import { checkinChild, checkoutChild } from "../helpers/utils";
 
 const ListItem = ({ child, index }) => {
   const { firstName, middleName, lastName } = child.name;
-  const { childId, image, checkedIn, pickupTime } = child;
+  let { childId, image, checkedIn, pickupTime } = child;
   const { accessToken } = credentials;
 
+  //Checkout endpoint does not delete the pickupTime, that`s why I have to set it to emty string.
+  if (checkedIn === false) pickupTime = "";
+
   const [pickup, setPickup] = useState("");
+  const [message, setMessage] = useState("");
   const [isCheckedIn, setCheckedIn] = useState(checkedIn);
 
   const handleCheckin = (event) => {
     event.preventDefault();
-    checkinChild(childId, accessToken, pickup, isCheckedIn, setCheckedIn);
+    checkinChild(
+      childId,
+      accessToken,
+      pickup,
+      isCheckedIn,
+      setCheckedIn,
+      setMessage,
+      setPickup
+    );
   };
   const handleCheckout = (event) => {
     event.preventDefault();
@@ -32,13 +44,21 @@ const ListItem = ({ child, index }) => {
       <td>
         {isCheckedIn && pickupTime ? (
           pickupTime.slice(11, 16)
+        ) : isCheckedIn && pickup ? (
+          pickup
         ) : (
-          <input
-            id={`pickup ${index}`}
-            placeholder="Enter hh:mm"
-            onChange={(event) => setPickup(event.target.value)}
-            required
-          />
+          <FormGroup>
+            <Label for={`pickup ${index}`}>Enter pickup time</Label>
+            <Input
+              type="time"
+              name="pickup"
+              id={`pickup ${index}`}
+              placeholder="with a placeholder"
+              onChange={(event) => setPickup(event.target.value)}
+              required
+            />
+            {message && !isCheckedIn && <h6>{message}</h6>}
+          </FormGroup>
         )}
       </td>
       <td>

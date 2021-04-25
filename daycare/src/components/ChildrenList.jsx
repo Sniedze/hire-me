@@ -2,7 +2,9 @@ import React from "react";
 import ListItem from "./ListItem";
 import { Table } from "reactstrap";
 
-const Children = (children) => {
+const Children = ({ children }) => {
+  if (children.length < 0) return <h3>No children to show</h3>;
+
   return (
     <Table borderless>
       <thead>
@@ -15,12 +17,11 @@ const Children = (children) => {
         </tr>
       </thead>
       <tbody>
-        {children.children.length > 0 &&
-          children.children.map((child, index) => {
-            return (
-              <ListItem key={child.childId} child={child} index={index + 1} />
-            );
-          })}
+        {children.map((child, index) => {
+          return (
+            <ListItem key={child.childId} child={child} index={index + 1} />
+          );
+        })}
       </tbody>
     </Table>
   );
